@@ -15,7 +15,7 @@ export default function DevicesList({ devices }: { devices: DeviceData }): JSX.E
     const $devices = devices.map((elem) =>
         <Button
             variant="contained"
-            onClick={() => { navigate(`${elem.id}`, { state: elem }) }}
+            onClick={() => { navigate(`${elem.id}`) }}
             key={elem.id}
         >
             {elem.device_name}

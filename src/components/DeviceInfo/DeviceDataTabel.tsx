@@ -1,6 +1,3 @@
-import { styled } from '@mui/material'
-import { useLocation } from 'react-router-dom'
-
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
@@ -20,7 +17,7 @@ export default function DeviceDataTabel({ measures }): JSX.Element {
             <TableCell component="th" scope="row">{elem.createdAt}</TableCell>
         </TableRow>)
     return (
-        < TableContainer component={Paper} >
+        < TableContainer component={Paper} sx={{ borderRadius: 2 }} >
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
                     <TableRow>

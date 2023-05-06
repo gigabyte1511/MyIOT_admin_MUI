@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom/client'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
 import App from './App'
-import DevicePage from './components/pages/DevicePage/DevicePage'
+import DevicePage from './components/pages/DevicesPage'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import DeviceInfo from './components/DeviceInfo/DeviceInfo'
-import DeviceLog from './components/DeviceLog/DeviceLog'
+import DeviceImageModal from './components/modals/DeviceImageModal'
+import DeviceContainer from './components/DeviceInfo/DeviceContainer'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,8 +26,14 @@ const router = createBrowserRouter([
         element: <DevicePage />,
         children: [
           {
-            path: '*',
-            element: [<DeviceInfo />, <DeviceLog />]
+            path: ':id',
+            element: <DeviceContainer />,
+            children: [
+              {
+                path: 'edit',
+                element: <DeviceImageModal />
+              }
+            ]
           }
 
         ]
