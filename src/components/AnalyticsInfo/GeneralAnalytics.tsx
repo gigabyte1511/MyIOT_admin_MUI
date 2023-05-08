@@ -2,6 +2,7 @@ import { Box, Grid, styled } from '@mui/material'
 import FactsContainer from './FactsContainer'
 import InteractiveChart from '../charts/InteractiveChart'
 import { StackedChart } from '../charts/StackedChart'
+import { type GetDeviceWithData } from '../../types/DeviceData'
 
 const Chart = styled(Box)({
     backgroundColor: '#ffffff',
@@ -16,8 +17,8 @@ const InteractiveChartContainer = styled(Chart)({
     width: 1200
 })
 
-export default function GeneralAnalytics({ data }): JSX.Element {
-    function test(device) {
+export default function GeneralAnalytics({ data }: { data: GetDeviceWithData[] }): JSX.Element {
+    function countDays(device: GetDeviceWithData): number[] {
         const measuresCountInDays = []
         for (let i = 1; i <= 30; i += 1) {
             let count = 0
@@ -38,7 +39,7 @@ export default function GeneralAnalytics({ data }): JSX.Element {
                 label: device.device_name,
                 borderColor: `rgb(${colorR}, ${colorG}, ${colorB})`,
                 backgroundColor: `rgba(${colorR}, ${colorG + 0}, ${colorB + 0}, 0.7)`,
-                data: test(device)
+                data: countDays(device)
             }
         )
     }

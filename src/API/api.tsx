@@ -1,51 +1,55 @@
-import { type DeviceData } from '../types/DeviceData'
+import { type GetDevice, type GetDeviceWithData } from '../types/DeviceData'
 
-export const getAllDevicesData = async (): Promise<DeviceData> => {
+interface ErrorResponse {
+    message: string
+}
+
+export const getAllDevicesWithData = async (): Promise<GetDeviceWithData[]> => {
     try {
         const request = await fetch('http://localhost:3050/admin-api/v0.1/device/data/', {
             method: 'GET'
         })
         if (request.status !== 200) {
-            const data = await request.json()
+            const data: ErrorResponse = await request.json() as ErrorResponse
             throw new Error(data.message)
         }
-        return await request.json()
+        return await request.json() as GetDeviceWithData[]
     } catch (error) {
-        return error
+        return error as ErrorResponse
     }
 }
 
-export const getAllDevices = async (): Promise<DeviceData> => {
+export const getAllDevices = async (): Promise<GetDevice[]> => {
     try {
         const request = await fetch('http://localhost:3050/admin-api/v0.1/device', {
             method: 'GET'
         })
         if (request.status !== 200) {
-            const data = await request.json()
+            const data = await request.json() as ErrorResponse
             throw new Error(data.message)
         }
-        return await request.json()
+        return await request.json() as GetDevice[]
     } catch (error) {
-        return error
+        return error as ErrorResponse
     }
 }
 
-export const getDeviceByID = async ({ queryKey }): Promise<DeviceData> => {
+export const getDeviceWithDataByID = async ({ queryKey }): Promise<GetDeviceWithData> => {
     try {
         const request = await fetch(`http://localhost:3050/admin-api/v0.1/device/data/${queryKey[1]}`, {
             method: 'GET'
         })
         if (request.status !== 200) {
-            const data = await request.json()
+            const data = await request.json() as ErrorResponse
             throw new Error(data.message)
         }
-        return await request.json()
+        return await request.json() as GetDeviceWithData
     } catch (error) {
-        return error
+        return error as ErrorResponse
     }
 }
 
-export const updateDeviceByID = async (data): Promise<DeviceData> => {
+export const updateDeviceByID = async (data): Promise<GetDevice> => {
     try {
         const request = await fetch(`http://localhost:3050/admin-api/v0.1/device/${data.id}`, {
             method: 'PATCH',
@@ -55,11 +59,11 @@ export const updateDeviceByID = async (data): Promise<DeviceData> => {
             body: JSON.stringify(data)
         })
         if (request.status !== 200) {
-            const data = await request.json()
+            const data = await request.json() as ErrorResponse
             throw new Error(data.message)
         }
-        return await request.json()
+        return await request.json() as GetDevice
     } catch (error) {
-        return error
+        return error as ErrorResponse
     }
 }

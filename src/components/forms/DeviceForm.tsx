@@ -4,6 +4,7 @@ import * as yup from 'yup'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { updateDeviceByID } from '../../API/api'
 import { GET_ALLDEVICES_QUERY_KEY } from '../pages/DevicesPage'
+import { type GetDeviceWithData } from '../../types/DeviceData'
 
 const PATCH_DEVICE_INFO_QUERY_KEY = 'PATCH_DEVICE_INFO_QUERY_KEY'
 
@@ -17,13 +18,13 @@ const DataContainer = styled(Form)({
     backgroundColor: '#fffffff1'
 })
 
-export default function DeviceForm({ data }): JSX.Element {
+export default function DeviceForm({ data }: { data: GetDeviceWithData }): JSX.Element {
     const queryClient = useQueryClient()
     const { mutate } = useMutation({
         queryKey: [PATCH_DEVICE_INFO_QUERY_KEY],
         mutationFn: updateDeviceByID,
-        onSuccess: () => {
-            queryClient.invalidateQueries(GET_ALLDEVICES_QUERY_KEY)
+        onSuccess: async () => {
+            await queryClient.invalidateQueries(GET_ALLDEVICES_QUERY_KEY)
         },
         onError: (error) => { console.log('Error', error) }
     })

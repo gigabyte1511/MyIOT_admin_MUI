@@ -1,9 +1,6 @@
 import { Button, styled } from '@mui/material'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useLocation, useNavigate } from 'react-router-dom'
-import { updateDeviceByID } from '../../API/API'
-
-const PATCH_DEVICE_IMAGE_QUERY_KEY = 'PATCH_DEVICE_IMAGE_QUERY_KEY'
+import { useNavigate } from 'react-router-dom'
+import { type GetDeviceWithData } from '../../types/DeviceData'
 
 const ImageContainer = styled('div')({
     display: 'flex',
@@ -17,19 +14,8 @@ const ImageEditButton = styled(Button)({
     backgroundColor: 'orange'
 })
 
-export default function DeviceImage({ data }): JSX.Element {
-    const queryClient = useQueryClient()
+export default function DeviceImage({ data }: { data: GetDeviceWithData }): JSX.Element {
     const navigate = useNavigate()
-
-    // const { mutate } = useMutation({
-    //     queryKey: [PATCH_DEVICE_IMAGE_QUERY_KEY],
-    //     mutationFn: updateDeviceByID,
-    //     onSuccess: (data) => {
-    //         queryClient.invalidateQueries(['GET_ALLDEVICES_DATA_QUERY_KEY'])
-    //     },
-    //     onError: (error) => { console.log('Error', error) }
-    // })
-
     return (
         <ImageContainer>
             <img style={{ height: '200px' }} src={data.device_image} alt="123" />

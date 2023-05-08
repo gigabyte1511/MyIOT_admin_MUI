@@ -2,7 +2,7 @@ export interface GetDevice {
     id: number
     device_name: string
     device_description: string
-    device_image: URL
+    device_image: string
     createdAt: string
     updatedAt: string
 }
@@ -28,6 +28,6 @@ export interface DeviceStatus {
 }
 
 export interface GetDeviceWithData extends GetDevice {
-    mesures: DeviceMeasure[]
+    measures: DeviceMeasure[]
     statuses: DeviceStatus[]
 }

@@ -11,7 +11,7 @@ const MyContainer = styled('div')({
 const Label = styled('div')({
     color: 'blue'
 })
-export default function AnatyticsFact({ label, value }): JSX.Element {
+export default function AnatyticsFact({ label, value }: { label: string, value: number | string }): JSX.Element {
     return (
         <MyContainer>
             <Typography variant="h6">

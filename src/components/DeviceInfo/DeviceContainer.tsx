@@ -1,9 +1,9 @@
 import { Outlet, useParams } from 'react-router-dom'
 import DeviceInfo from './DeviceInfo'
 import DeviceLog from './DeviceLog'
-import { Grid, styled } from '@mui/material'
+import { Grid } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
-import { getDeviceByID } from '../../API/API'
+import { getDeviceWithDataByID } from '../../API/api'
 
 export const GET_DEVICE_BY_ID_QUERY_KEY = 'GET_DEVICE_BY_ID_QUERY_KEY'
 
@@ -11,7 +11,7 @@ export default function DeviceContainer(): JSX.Element {
     const { id } = useParams()
     const { isError, isSuccess, data, error } = useQuery({
         queryKey: [GET_DEVICE_BY_ID_QUERY_KEY, id],
-        queryFn: getDeviceByID
+        queryFn: getDeviceWithDataByID
     })
 
     if (isError) console.log('ERROR', error)
@@ -34,4 +34,7 @@ export default function DeviceContainer(): JSX.Element {
             </Grid>
         )
     }
+    return (
+        <div>Loading...</div>
+    )
 }

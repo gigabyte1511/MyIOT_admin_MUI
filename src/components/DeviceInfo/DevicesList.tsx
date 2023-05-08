@@ -1,6 +1,6 @@
 import { Button, styled } from '@mui/material'
-import { type DeviceData } from '../../types/DeviceData'
 import { useNavigate } from 'react-router-dom'
+import { type GetDevice } from '../../types/DeviceData'
 
 const MyContainer = styled('div')({
     display: 'flex',
@@ -10,7 +10,7 @@ const MyContainer = styled('div')({
     backgroundColor: '#444444',
     borderRadius: 10
 })
-export default function DevicesList({ devices }: { devices: DeviceData }): JSX.Element {
+export default function DevicesList({ devices }: { devices: GetDevice[] }): JSX.Element {
     const navigate = useNavigate()
     const $devices = devices.map((elem) =>
         <Button

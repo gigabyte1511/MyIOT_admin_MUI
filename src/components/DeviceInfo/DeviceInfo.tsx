@@ -2,6 +2,7 @@ import { Grid, styled } from '@mui/material'
 import DeviceImage from './DeviceImage'
 import DeviceForm from '../forms/DeviceForm'
 import LineCharts from '../charts/LineChart'
+import { type GetDeviceWithData } from '../../types/DeviceData'
 
 const MyContainer = styled('div')({
     padding: 10,
@@ -16,7 +17,7 @@ const ChartContainer = styled('div')({
     borderRadius: 10
 })
 
-export default function DeviceInfo({ device }): JSX.Element {
+export default function DeviceInfo({ device }: { device: GetDeviceWithData }): JSX.Element {
     const chartLines = [
         {
             label: 'Battary voltage',
@@ -25,14 +26,6 @@ export default function DeviceInfo({ device }): JSX.Element {
             fill: true,
             data: device.statuses.map((elem) => elem.voltage)
         }
-        // {
-        //     label: 'label2',
-        //     borderColor: 'rgb(53, 162, 235)',
-        //     backgroundColor: 'rgba(53, 162, 235, 0.5)',
-        //     data: [
-        //         1, 2, 3, 4, 5
-        //     ]
-        // }
     ]
     const labels = device.statuses.map((elem) => elem.date)
     return (
