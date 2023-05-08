@@ -22,11 +22,11 @@ export default function DeviceDataTabel({ measures }): JSX.Element {
                 <TableHead>
                     <TableRow>
                         <TableCell>ID</TableCell>
-                        <TableCell align="right">Device ID</TableCell>
-                        <TableCell align="right">Measure type</TableCell>
-                        <TableCell align="right">Value</TableCell>
-                        <TableCell align="right">Measure date</TableCell>
-                        <TableCell align="right">Registration date</TableCell>
+                        <TableCell >Device ID</TableCell>
+                        <TableCell >Measure type</TableCell>
+                        <TableCell >Value</TableCell>
+                        <TableCell >Measure date</TableCell>
+                        <TableCell >Registration date</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

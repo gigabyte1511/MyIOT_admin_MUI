@@ -1,7 +1,7 @@
 import { Outlet, useParams } from 'react-router-dom'
 import DeviceInfo from './DeviceInfo'
 import DeviceLog from './DeviceLog'
-import { Grid, styled } from '@mui/material'
+import { Grid } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { getDeviceByID } from '../../API/API'
 

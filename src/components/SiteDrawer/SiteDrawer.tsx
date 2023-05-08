@@ -21,6 +21,7 @@ import DevicesOtherIcon from '@mui/icons-material/DevicesOther'
 import QueryStatsIcon from '@mui/icons-material/QueryStats'
 
 import { useNavigate } from 'react-router-dom'
+import { Height } from '@mui/icons-material'
 
 const drawerWidth = 240
 
@@ -93,21 +94,21 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   })
 )
 
-export default function SiteDrawer({ component }) {
+export default function SiteDrawer({ component }: { component: JSX.Element }): JSX.Element {
   const navigate = useNavigate()
   const theme = useTheme()
   const [open, setOpen] = React.useState(false)
 
-  const handleDrawerOpen = () => {
+  const handleDrawerOpen = (): void => {
     setOpen(true)
   }
 
-  const handleDrawerClose = () => {
+  const handleDrawerClose = (): void => {
     setOpen(false)
   }
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', backgroundColor: '#ffffff00' }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
@@ -124,7 +125,7 @@ export default function SiteDrawer({ component }) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Mini variant drawer
+            MyIOT admin manager
           </Typography>
         </Toolbar>
       </AppBar>

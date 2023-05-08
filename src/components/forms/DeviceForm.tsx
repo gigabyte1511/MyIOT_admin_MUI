@@ -2,7 +2,7 @@ import { Button, TextField, styled } from '@mui/material'
 import { ErrorMessage, Form, Formik } from 'formik'
 import * as yup from 'yup'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { updateDeviceByID } from '../../API/API'
+import { updateDeviceByID } from '../../API/api'
 import { GET_ALLDEVICES_QUERY_KEY } from '../pages/DevicesPage'
 
 const PATCH_DEVICE_INFO_QUERY_KEY = 'PATCH_DEVICE_INFO_QUERY_KEY'
@@ -15,7 +15,6 @@ const DataContainer = styled(Form)({
     padding: 10,
     borderRadius: 10,
     backgroundColor: '#fffffff1'
-
 })
 
 export default function DeviceForm({ data }): JSX.Element {
