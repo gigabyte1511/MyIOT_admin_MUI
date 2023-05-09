@@ -1,6 +1,7 @@
 import { Button, styled } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { type GetDeviceWithData } from '../../types/DeviceData'
+import DeviceDeleteButton from '../inputs/buttons/deviceDeleteButton'
 
 const ImageContainer = styled('div')({
     display: 'flex',
@@ -25,6 +26,7 @@ export default function DeviceImage({ data }: { data: GetDeviceWithData }): JSX.
             >
                 EDIT IMAGE
             </ImageEditButton>
+            <DeviceDeleteButton deviceID={data.id} />
         </ImageContainer>
     )
 }
