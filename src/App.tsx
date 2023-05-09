@@ -1,8 +1,9 @@
 // import { Button } from '@mui/material'
 import SiteDrawer from './components/SiteDrawer/SiteDrawer'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 import { createTheme } from '@mui/material'
 import { ThemeProvider } from '@emotion/react'
+import { useEffect } from 'react'
 
 // const MyButton = styled(Button)({
 //   padding: 5,

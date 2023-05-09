@@ -7,7 +7,9 @@ import {
     LineElement,
     Title,
     Tooltip,
-    Legend
+    Legend,
+    TimeScale,
+    Filler
 } from 'chart.js'
 import { Line } from 'react-chartjs-2'
 
@@ -18,9 +20,12 @@ ChartJS.register(
     LineElement,
     Title,
     Tooltip,
-    Legend
+    Legend,
+    TimeScale,
+    Filler
+
 )
-export default function LineCharts({ title, chartLines, labels }): JSX.Element {
+export default function LineChart({ title, chartLines }): JSX.Element {
     const options = {
         responsive: true,
         plugins: {
@@ -47,7 +52,7 @@ export default function LineCharts({ title, chartLines, labels }): JSX.Element {
         }
     }
     const data = {
-        labels,
+        labels: [],
         datasets: chartLines
     }
 
