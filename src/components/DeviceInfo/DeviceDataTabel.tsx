@@ -5,10 +5,11 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
+import { type GetDeviceWithData } from '../../types/DeviceData'
 
-export default function DeviceDataTabel({ measures }): JSX.Element {
+export default function DeviceDataTabel({ measures }: { measures: GetDeviceWithData['measures'] }): JSX.Element {
     const tabelRows = measures.map((elem) =>
-        <TableRow>
+        <TableRow key={elem.id}>
             <TableCell component="th" scope="row">{elem.id}</TableCell>
             <TableCell component="th" scope="row">{elem.deviceId}</TableCell>
             <TableCell component="th" scope="row">{elem.measure_type}</TableCell>
@@ -22,11 +23,11 @@ export default function DeviceDataTabel({ measures }): JSX.Element {
                 <TableHead>
                     <TableRow>
                         <TableCell>ID</TableCell>
-                        <TableCell align="right">Device ID</TableCell>
-                        <TableCell align="right">Measure type</TableCell>
-                        <TableCell align="right">Value</TableCell>
-                        <TableCell align="right">Measure date</TableCell>
-                        <TableCell align="right">Registration date</TableCell>
+                        <TableCell >Device ID</TableCell>
+                        <TableCell >Measure type</TableCell>
+                        <TableCell >Value</TableCell>
+                        <TableCell >Measure date</TableCell>
+                        <TableCell >Registration date</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

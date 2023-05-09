@@ -7,6 +7,7 @@ import DevicePage from './components/pages/DevicesPage'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import DeviceImageModal from './components/modals/DeviceImageModal'
 import DeviceContainer from './components/DeviceInfo/DeviceContainer'
+import AnalyticsPage from './components/pages/AnalyticsPage'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
           }
 
         ]
+      },
+      {
+        path: 'analytics',
+        element: <AnalyticsPage />
       }
     ]
   }

@@ -1,6 +1,6 @@
 import { styled } from '@mui/material'
-import { useLocation } from 'react-router-dom'
 import DeviceDataTabel from './DeviceDataTabel'
+import { type GetDeviceWithData } from '../../types/DeviceData'
 
 const MyContainer = styled('div')({
     padding: 10,
@@ -8,7 +8,7 @@ const MyContainer = styled('div')({
     borderRadius: 10
 })
 
-export default function DeviceLog({ device }): JSX.Element {
+export default function DeviceLog({ device }: { device: GetDeviceWithData }): JSX.Element {
     return (
         <MyContainer>
             <DeviceDataTabel measures={device.measures} />
