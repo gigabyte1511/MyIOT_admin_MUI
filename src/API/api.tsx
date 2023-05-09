@@ -67,3 +67,20 @@ export const updateDeviceByID = async (data): Promise<GetDevice> => {
         return error as ErrorResponse
     }
 }
+export const deleteDeviceByID = async ({ id }): Promise<GetDevice> => {
+    try {
+        const request = await fetch(`http://localhost:3050/admin-api/v0.1/device/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8'
+            }
+        })
+        if (request.status !== 200) {
+            const data = await request.json() as ErrorResponse
+            throw new Error(data.message)
+        }
+        return await request.json() as GetDevice
+    } catch (error) {
+        return error as ErrorResponse
+    }
+}

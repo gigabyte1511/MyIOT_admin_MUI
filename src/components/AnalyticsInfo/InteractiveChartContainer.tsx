@@ -31,7 +31,7 @@ const DeviceContainer = styled(FormGroup)({
 export default function InteractiveChartContainer({ data }: { data: Array<Color & GetDeviceWithData> }): JSX.Element {
     const defaultCheckState = data.reduce((acc, device) => {
         return ({
-            ...acc, [device.device_name]: false
+            ...acc, [device.device_name]: true
         })
     }, {})
     const [checkState, setCheckState] = useState(defaultCheckState)
