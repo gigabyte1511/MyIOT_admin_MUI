@@ -64,7 +64,8 @@ export default function InteractiveChartContainer({ data }: { data: Array<Color 
             data: device.measures
                 .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
                 .map((measure) => ({ x: measure.date, y: measure.measure_value })),
-            hidden: !checkState[device.device_name]
+            hidden: !checkState[device.device_name],
+            fill: false
         }
     })
 

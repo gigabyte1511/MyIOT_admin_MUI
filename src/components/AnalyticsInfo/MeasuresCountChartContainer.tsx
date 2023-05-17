@@ -32,7 +32,8 @@ export default function MeasuresCountChartContainer({ data }: { data: Array<Colo
                 borderColor: device.color,
                 backgroundColor: device.color,
                 data: countDays(device),
-                hidden: false
+                hidden: false,
+                fill: false
             }
         )
     }

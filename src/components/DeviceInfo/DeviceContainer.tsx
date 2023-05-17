@@ -9,8 +9,10 @@ export const GET_DEVICE_BY_ID_QUERY_KEY = 'GET_DEVICE_BY_ID_QUERY_KEY'
 
 export default function DeviceContainer(): JSX.Element {
     const { id } = useParams()
+    const queryKeys = (id !== undefined) ? [GET_DEVICE_BY_ID_QUERY_KEY, id] : []
+
     const { isError, isSuccess, data, error } = useQuery({
-        queryKey: [GET_DEVICE_BY_ID_QUERY_KEY, id],
+        queryKey: queryKeys,
         queryFn: getDeviceWithDataByID
     })
 
