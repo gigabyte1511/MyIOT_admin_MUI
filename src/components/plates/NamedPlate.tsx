@@ -1,5 +1,4 @@
 import { styled } from '@mui/material'
-import { DeviceData } from '../../types/DeviceData'
 
 const MyContainer = styled('div')({
     position: 'relative',

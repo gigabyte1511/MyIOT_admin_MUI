@@ -54,7 +54,7 @@ export const updateDeviceByID = async (data: { id: number, device_name: string, 
     return await request.json() as GetDevice
 }
 
-export const deleteDeviceByID = async ({ id }: { id: string }): Promise<GetDevice> => {
+export const deleteDeviceByID = async ({ id }: { id: number }): Promise<GetDevice> => {
     const request = await fetch(`${baseURL}/admin-api/v0.1/device/${id}`, {
         method: 'DELETE',
         headers: {
