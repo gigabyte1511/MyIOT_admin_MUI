@@ -21,7 +21,6 @@ import DevicesOtherIcon from '@mui/icons-material/DevicesOther'
 import QueryStatsIcon from '@mui/icons-material/QueryStats'
 
 import { useNavigate } from 'react-router-dom'
-import { Height } from '@mui/icons-material'
 
 const drawerWidth = 240
 
@@ -139,7 +138,7 @@ export default function SiteDrawer({ component }: { component: JSX.Element }): J
         <List>
 
           <ListItem key="Analytics" disablePadding>
-            <ListItemButton onClick={() => { navigate('analytics') }}>
+            <ListItemButton onClick={() => { navigate('/') }}>
               <ListItemIcon>
                 <QueryStatsIcon />
               </ListItemIcon>
