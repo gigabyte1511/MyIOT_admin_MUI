@@ -102,7 +102,7 @@ export default function DeviceForm({ data }: { data: GetDeviceWithData }): JSX.E
                             onChange={props.handleChange}
                             onBlur={props.handleBlur}
                             helperText={<ErrorMessage name="device_name" />}
-                            error={props.errors.device_name && props.touched.device_name}
+                            error={props.errors.device_name != null && props.touched.device_name}
                             required
                             label="Name"
                             value={device_name}
