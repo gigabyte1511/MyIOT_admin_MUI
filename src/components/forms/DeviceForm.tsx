@@ -47,9 +47,13 @@ export default function DeviceForm({ data }: { data: GetDeviceWithData }): JSX.E
         gps: deviceStatus.gps,
         status: deviceStatus.status
     }
-    const handleSubmit = (values: FormikValues): void => {
+    const handleSubmit = (values: FormValues): void => {
         console.log(values)
-        mutate(values)
+        mutate({
+            id: data.id,
+            device_name: values.device_name,
+            device_image: data.device_image
+        })
     }
     const YupValidation = yup.object().shape({
         id: yup.string(),

@@ -9,6 +9,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { GET_ALLDEVICES_QUERY_KEY } from '../pages/DevicesPage'
 import { updateDeviceByID } from '../../API/api'
 import { useState } from 'react'
+import { type GetDeviceWithData } from '../../types/DeviceData'
 
 const PATCH_DEVICE_IMAGE_QUERY_KEY = 'PATCH_DEVICE_IMAGE_QUERY_KEY'
 
@@ -38,11 +39,15 @@ const Image = styled('img')({
     width: 250
 })
 
+interface FormValues {
+    image: string
+}
+
 export default function DeviceImageModal(): JSX.Element {
     const queryClient = useQueryClient()
-    const { device_image, id }: { device_image: string, id: string } = useOutletContext()
-    console.log(device_image)
-    const [test, setTest] = useState<string>(device_image)
+    const { device_image, id, device_name }: GetDeviceWithData = useOutletContext()
+
+    const [imageState, setImageState] = useState(device_image)
     const navigate = useNavigate()
 
     const { mutate } = useMutation({
@@ -57,10 +62,14 @@ export default function DeviceImageModal(): JSX.Element {
     const handleClose = (): void => {
         navigate(-1)
     }
-    const initialValue = { image: test }
-    const handleSubmit = (values: FormikValues): void => {
-        console.log('eee')
-        mutate({ id, device_image: values.image })
+    const initialValue: FormValues = { image: imageState }
+    const handleSubmit = (values: FormValues): void => {
+        console.log(values)
+        mutate({
+            id,
+            device_name,
+            device_image: values.image
+        })
         navigate(-1)
     }
     const YupValidation = yup.object().shape({
@@ -77,7 +86,7 @@ export default function DeviceImageModal(): JSX.Element {
             aria-describedby="modal-modal-description"
         >
             <Box sx={style}>
-                <Image src={test} alt="" />
+                <Image src={imageState} alt="" />
                 <Formik
                     initialValues={initialValue}
                     validationSchema={YupValidation}
@@ -85,7 +94,7 @@ export default function DeviceImageModal(): JSX.Element {
                 >
                     {(props) => {
                         const { image } = props.values
-                        setTest(image)
+                        setImageState(image)
                         return (
                             <DataContainer>
                                 <TextField
@@ -95,7 +104,7 @@ export default function DeviceImageModal(): JSX.Element {
                                     onChange={props.handleChange}
                                     onBlur={props.handleBlur}
                                     label="image"
-                                    value={test}
+                                    value={imageState}
                                     helperText={<ErrorMessage name="image" />}
                                     error={(props.errors.image != null) && props.touched.image}
                                 />

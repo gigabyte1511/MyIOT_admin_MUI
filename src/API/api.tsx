@@ -39,7 +39,7 @@ export const getDeviceWithDataByID = async ({ queryKey }: { queryKey: string[] }
     return await request.json() as GetDeviceWithData
 }
 
-export const updateDeviceByID = async (data: { id: string }): Promise<GetDevice> => {
+export const updateDeviceByID = async (data: { id: number, device_name: string, device_image: string }): Promise<GetDevice> => {
     const request = await fetch(`${baseURL}/admin-api/v0.1/device/${data.id}`, {
         method: 'PATCH',
         headers: {
