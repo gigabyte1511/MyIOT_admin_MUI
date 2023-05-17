@@ -8,16 +8,15 @@ const SubmitButton = styled(Button)(({ active }) => (
     }
 ))
 interface Props {
-    active: boolean
+    action: () => void
 }
-export default function FormSubmitButton({ active, action }: Props): JSX.Element {
+export default function FormSubmitButton({ action }: Props): JSX.Element {
     return (
         <SubmitButton
             variant="contained"
             onClick={() => { action() }}
-            active={active}
         >
-            {(active) ? 'SUBMIT' : 'EDIT'}
+            SUBMIT
         </SubmitButton>
 
     )

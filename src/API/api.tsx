@@ -4,83 +4,67 @@ interface ErrorResponse {
     message: string
 }
 
-export const getAllDevicesWithData = async (): Promise<GetDeviceWithData[]> => {
-    try {
-        const request = await fetch('http://localhost:3050/admin-api/v0.1/device/data/', {
-            method: 'GET'
-        })
-        if (request.status !== 200) {
-            const data: ErrorResponse = await request.json() as ErrorResponse
-            throw new Error(data.message)
-        }
-        return await request.json() as GetDeviceWithData[]
-    } catch (error) {
-        return error as ErrorResponse
-    }
-}
+const baseURL = 'http://13.37.52.101:3050'
+// const baseURL = 'http://localhost:3050'
 
 export const getAllDevices = async (): Promise<GetDevice[]> => {
-    try {
-        const request = await fetch('http://localhost:3050/admin-api/v0.1/device', {
-            method: 'GET'
-        })
-        if (request.status !== 200) {
-            const data = await request.json() as ErrorResponse
-            throw new Error(data.message)
-        }
-        return await request.json() as GetDevice[]
-    } catch (error) {
-        return error as ErrorResponse
+    const request = await fetch(`${baseURL}/admin-api/v0.1/device`, {
+        method: 'GET'
+    })
+    if (request.status !== 200) {
+        const data = await request.json() as ErrorResponse
+        throw new Error(data.message)
     }
+    return await request.json() as GetDevice[]
+}
+
+export const getAllDevicesWithData = async (): Promise<GetDeviceWithData[]> => {
+    const request = await fetch(`${baseURL}/admin-api/v0.1/device/data`, {
+        method: 'GET'
+    })
+    if (request.status !== 200) {
+        const data = await request.json() as ErrorResponse
+        throw new Error(data.message)
+    }
+    return await request.json() as GetDeviceWithData[]
 }
 
 export const getDeviceWithDataByID = async ({ queryKey }): Promise<GetDeviceWithData> => {
-    try {
-        const request = await fetch(`http://localhost:3050/admin-api/v0.1/device/data/${queryKey[1]}`, {
-            method: 'GET'
-        })
-        if (request.status !== 200) {
-            const data = await request.json() as ErrorResponse
-            throw new Error(data.message)
-        }
-        return await request.json() as GetDeviceWithData
-    } catch (error) {
-        return error as ErrorResponse
+    const request = await fetch(`${baseURL}/admin-api/v0.1/device/data/${queryKey[1]}`, {
+        method: 'GET'
+    })
+    if (request.status !== 200) {
+        const data = await request.json() as ErrorResponse
+        throw new Error(data.message)
     }
+    return await request.json() as GetDeviceWithData
 }
 
 export const updateDeviceByID = async (data): Promise<GetDevice> => {
-    try {
-        const request = await fetch(`http://localhost:3050/admin-api/v0.1/device/${data.id}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json; charset=utf-8'
-            },
-            body: JSON.stringify(data)
-        })
-        if (request.status !== 200) {
-            const data = await request.json() as ErrorResponse
-            throw new Error(data.message)
-        }
-        return await request.json() as GetDevice
-    } catch (error) {
-        return error as ErrorResponse
+    const request = await fetch(`${baseURL}/admin-api/v0.1/device/${data.id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json; charset=utf-8'
+        },
+        body: JSON.stringify(data)
+    })
+    if (request.status !== 200) {
+        const data = await request.json() as ErrorResponse
+        throw new Error(data.message)
     }
+    return await request.json() as GetDevice
 }
+
 export const deleteDeviceByID = async ({ id }): Promise<GetDevice> => {
-    try {
-        const request = await fetch(`http://localhost:3050/admin-api/v0.1/device/${id}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json; charset=utf-8'
-            }
-        })
-        if (request.status !== 200) {
-            const data = await request.json() as ErrorResponse
-            throw new Error(data.message)
+    const request = await fetch(`${baseURL}/admin-api/v0.1/device/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json; charset=utf-8'
         }
-        return await request.json() as GetDevice
-    } catch (error) {
-        return error as ErrorResponse
+    })
+    if (request.status !== 200) {
+        const data = await request.json() as ErrorResponse
+        throw new Error(data.message)
     }
+    return await request.json() as GetDevice
 }

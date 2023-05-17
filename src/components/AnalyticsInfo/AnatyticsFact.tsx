@@ -20,7 +20,7 @@ export default function AnatyticsFact({ label, value }: { label: string, value: 
             <Typography variant="h4">
                 <div>{value}</div>
             </Typography>
-            <Typography variant="h7">
+            <Typography variant="subtitle1">
                 <div>{'Last date'}</div>
             </Typography>
         </MyContainer>

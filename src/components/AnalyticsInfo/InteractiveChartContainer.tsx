@@ -1,6 +1,6 @@
 import { Box, Checkbox, FormControlLabel, FormGroup, styled } from '@mui/material'
 import { type GetDeviceWithData } from '../../types/DeviceData'
-import { useState } from 'react'
+import { useState, type ChangeEvent } from 'react'
 import LineChart from '../charts/LineChart'
 import { type Color } from '../../types/Styles'
 
@@ -27,6 +27,7 @@ const DeviceContainer = styled(FormGroup)({
         fontSize: 20
     }
 })
+type CheckState = Record<string, boolean>
 
 export default function InteractiveChartContainer({ data }: { data: Array<Color & GetDeviceWithData> }): JSX.Element {
     const defaultCheckState = data.reduce((acc, device) => {
@@ -34,10 +35,10 @@ export default function InteractiveChartContainer({ data }: { data: Array<Color 
             ...acc, [device.device_name]: true
         })
     }, {})
-    const [checkState, setCheckState] = useState(defaultCheckState)
+    const [checkState, setCheckState] = useState<CheckState>(defaultCheckState)
     console.log(checkState)
 
-    const handleChange = (event) => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
         setCheckState((state) => ({ ...state, [event.target.name]: !state[event.target.name] }))
     }
 
@@ -61,7 +62,7 @@ export default function InteractiveChartContainer({ data }: { data: Array<Color 
             borderColor: device.color,
             backgroundColor: device.color,
             data: device.measures
-                .sort((a, b) => new Date(a.date) - new Date(b.date))
+                .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
                 .map((measure) => ({ x: measure.date, y: measure.measure_value })),
             hidden: !checkState[device.device_name]
         }

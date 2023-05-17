@@ -1,11 +1,11 @@
 import { Grid } from '@mui/material'
 import AnatyticsFact from './AnatyticsFact'
-import { type GetDeviceWithData } from '../../types/DeviceData'
+import { type DeviceMeasure, type GetDeviceWithData } from '../../types/DeviceData'
 
 export default function FactsContainer({ data }: { data: GetDeviceWithData[] }): JSX.Element {
     const deviceCounter = data.length
     const allMeasuresCounter: number = data
-        .reduce((acc, elem) => [...acc, ...elem.measures], [])
+        .reduce((acc: DeviceMeasure[], elem: GetDeviceWithData) => [...acc, ...elem.measures], [])
         .length
     return (
         <Grid container spacing={2}>

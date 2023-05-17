@@ -31,7 +31,8 @@ export default function MeasuresCountChartContainer({ data }: { data: Array<Colo
                 label: device.device_name,
                 borderColor: device.color,
                 backgroundColor: device.color,
-                data: countDays(device)
+                data: countDays(device),
+                hidden: false
             }
         )
     }
@@ -40,7 +41,7 @@ export default function MeasuresCountChartContainer({ data }: { data: Array<Colo
 
     return (
         <StackedChartContainer>
-            <StackedChart title={'Number of measurements per month'} data={labelData} />
+            <StackedChart title={'Number of measurements per month'} chartLines={labelData} />
         </StackedChartContainer>
     )
 }

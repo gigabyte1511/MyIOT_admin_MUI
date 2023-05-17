@@ -12,6 +12,7 @@ import {
     Filler
 } from 'chart.js'
 import { Line } from 'react-chartjs-2'
+import { type ChartLine } from '../../types/ChartsData'
 
 ChartJS.register(
     CategoryScale,
@@ -25,7 +26,11 @@ ChartJS.register(
     Filler
 
 )
-export default function LineChart({ title, chartLines }): JSX.Element {
+interface Props {
+    title: string
+    chartLines: ChartLine[]
+}
+export default function LineChart({ title, chartLines }: Props): JSX.Element {
     const options = {
         responsive: true,
         plugins: {

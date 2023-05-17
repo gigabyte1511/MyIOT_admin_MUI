@@ -38,7 +38,7 @@ const Image = styled('img')({
     width: 250
 })
 
-export default function DeviceImageModal() {
+export default function DeviceImageModal(): JSX.Element {
     const queryClient = useQueryClient()
     const { device_image, id } = useOutletContext()
     console.log(device_image)
@@ -54,11 +54,11 @@ export default function DeviceImageModal() {
         onError: (error) => { console.log('Error', error) }
     })
 
-    const handleClose = () => {
+    const handleClose = (): void => {
         navigate(-1)
     }
     const initialValue = { image: test }
-    const handleSubmit = (values) => {
+    const handleSubmit = (values): void => {
         console.log('eee')
         mutate({ id, device_image: values.image })
         navigate(-1)

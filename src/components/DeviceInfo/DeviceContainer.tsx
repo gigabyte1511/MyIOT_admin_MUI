@@ -4,7 +4,6 @@ import DeviceLog from './DeviceLog'
 import { Grid, Skeleton } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { getDeviceWithDataByID } from '../../API/api'
-import { styled } from '@mui/system'
 
 export const GET_DEVICE_BY_ID_QUERY_KEY = 'GET_DEVICE_BY_ID_QUERY_KEY'
 

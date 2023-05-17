@@ -2,7 +2,7 @@ import { Skeleton, styled } from '@mui/material'
 import DevicesList from '../DeviceInfo/DevicesList'
 import { type UseQueryResult, useQuery } from '@tanstack/react-query'
 import { Outlet } from 'react-router-dom'
-import { getAllDevicesWithData } from '../../API/api'
+import { getAllDevices } from '../../API/api'
 
 export const GET_ALLDEVICES_QUERY_KEY = 'GET_ALLDEVICES_QUERY_KEY'
 
@@ -20,7 +20,7 @@ const SkeletonContainer = styled(Skeleton)({
 export default function DevicePage(): JSX.Element {
     const { isError, isSuccess, data, error } = useQuery({
         queryKey: [GET_ALLDEVICES_QUERY_KEY],
-        queryFn: getAllDevicesWithData
+        queryFn: getAllDevices
     })
     if (isError) console.log('ERROR', error)
     if (isSuccess) {

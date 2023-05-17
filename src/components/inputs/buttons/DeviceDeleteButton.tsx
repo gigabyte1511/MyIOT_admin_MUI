@@ -13,11 +13,11 @@ export default function DeviceDeleteButton({ deviceID: id }: { deviceID: number 
     const queryClient = useQueryClient()
     const navigate = useNavigate()
     const { mutate } = useMutation({
-        queryKey: [DELETE_DEVICE_IMAGE_QUERY_KEY],
+        mutationKey: [DELETE_DEVICE_IMAGE_QUERY_KEY],
         mutationFn: deleteDeviceByID,
         onSuccess: async () => {
             navigate(-1)
-            await queryClient.invalidateQueries(GET_ALLDEVICES_QUERY_KEY)
+            await queryClient.invalidateQueries([GET_ALLDEVICES_QUERY_KEY])
         },
         onError: (error) => { console.log('Error', error) }
     })

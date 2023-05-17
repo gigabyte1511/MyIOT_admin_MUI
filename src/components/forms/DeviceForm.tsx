@@ -21,10 +21,10 @@ const DataContainer = styled(Form)({
 export default function DeviceForm({ data }: { data: GetDeviceWithData }): JSX.Element {
     const queryClient = useQueryClient()
     const { mutate } = useMutation({
-        queryKey: [PATCH_DEVICE_INFO_QUERY_KEY],
+        mutationKey: [PATCH_DEVICE_INFO_QUERY_KEY],
         mutationFn: updateDeviceByID,
         onSuccess: async () => {
-            await queryClient.invalidateQueries(GET_ALLDEVICES_QUERY_KEY)
+            await queryClient.invalidateQueries([GET_ALLDEVICES_QUERY_KEY])
         },
         onError: (error) => { console.log('Error', error) }
     })

@@ -24,7 +24,7 @@ export default function DeviceInfo({ device }: { device: GetDeviceWithData }): J
             borderColor: '#2da7ff',
             backgroundColor: '#2da7ff4e',
             data: device.statuses
-                .sort((a, b) => new Date(a.date) - new Date(b.date))
+                .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
                 .map((status) => ({ x: status.date, y: status.voltage })),
             fill: true
         }
