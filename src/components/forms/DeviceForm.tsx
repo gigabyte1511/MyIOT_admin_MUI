@@ -146,7 +146,7 @@ export default function DeviceForm({ data }: { data: GetDeviceWithData }): JSX.E
                             onChange={props.handleChange}
                             onBlur={props.handleBlur}
                             helperText={<ErrorMessage name="status" />}
-                            error={props.errors.status && props.touched.status}
+                            error={props.errors.status != null && props.touched.status}
                             label="Status"
                             value={status}
                             InputProps={{
