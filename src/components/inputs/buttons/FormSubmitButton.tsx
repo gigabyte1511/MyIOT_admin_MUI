@@ -1,12 +1,18 @@
 import { Button, styled } from '@mui/material'
 
-const SubmitButton = styled(Button)(({ active }) => (
+// const SubmitButton = styled(Button)(({ active }) => (
+//     {
+//         marginLeft: 'auto',
+//         marginRight: 'auto',
+//         backgroundColor: (active) ? 'green' : ''
+//     }
+// ))
+const SubmitButton = styled(Button)(
     {
         marginLeft: 'auto',
-        marginRight: 'auto',
-        backgroundColor: (active) ? 'green' : ''
+        marginRight: 'auto'
     }
-))
+)
 interface Props {
     action: () => void
 }

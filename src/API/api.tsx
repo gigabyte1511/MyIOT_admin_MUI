@@ -29,7 +29,7 @@ export const getAllDevicesWithData = async (): Promise<GetDeviceWithData[]> => {
     return await request.json() as GetDeviceWithData[]
 }
 
-export const getDeviceWithDataByID = async ({ queryKey }): Promise<GetDeviceWithData> => {
+export const getDeviceWithDataByID = async ({ queryKey }: { queryKey: string[] }): Promise<GetDeviceWithData> => {
     const request = await fetch(`${baseURL}/admin-api/v0.1/device/data/${queryKey[1]}`, {
         method: 'GET'
     })
@@ -40,7 +40,7 @@ export const getDeviceWithDataByID = async ({ queryKey }): Promise<GetDeviceWith
     return await request.json() as GetDeviceWithData
 }
 
-export const updateDeviceByID = async (data): Promise<GetDevice> => {
+export const updateDeviceByID = async (data: { id: string }): Promise<GetDevice> => {
     const request = await fetch(`${baseURL}/admin-api/v0.1/device/${data.id}`, {
         method: 'PATCH',
         headers: {
@@ -55,7 +55,7 @@ export const updateDeviceByID = async (data): Promise<GetDevice> => {
     return await request.json() as GetDevice
 }
 
-export const deleteDeviceByID = async ({ id }): Promise<GetDevice> => {
+export const deleteDeviceByID = async ({ id }: { id: string }): Promise<GetDevice> => {
     const request = await fetch(`${baseURL}/admin-api/v0.1/device/${id}`, {
         method: 'DELETE',
         headers: {

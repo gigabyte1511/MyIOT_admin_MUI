@@ -1,5 +1,5 @@
 import { Button, TextField, styled } from '@mui/material'
-import { ErrorMessage, Form, Formik } from 'formik'
+import { ErrorMessage, Form, Formik, type FormikValues } from 'formik'
 import * as yup from 'yup'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { updateDeviceByID } from '../../API/api'
@@ -18,6 +18,15 @@ const DataContainer = styled(Form)({
     backgroundColor: '#fffffff1'
 })
 
+interface FormValues {
+    id: number
+    device_name: string
+    createdAt: string
+    batteryVoltage: number
+    gps: string
+    status: string
+}
+
 export default function DeviceForm({ data }: { data: GetDeviceWithData }): JSX.Element {
     const queryClient = useQueryClient()
     const { mutate } = useMutation({
@@ -30,7 +39,7 @@ export default function DeviceForm({ data }: { data: GetDeviceWithData }): JSX.E
     })
 
     const deviceStatus = data.statuses[data.statuses.length - 1]
-    const initialValue = {
+    const initialValue: FormValues = {
         id: data.id,
         device_name: data.device_name,
         createdAt: data.createdAt,
@@ -38,7 +47,7 @@ export default function DeviceForm({ data }: { data: GetDeviceWithData }): JSX.E
         gps: deviceStatus.gps,
         status: deviceStatus.status
     }
-    const handleSubmit = (values) => {
+    const handleSubmit = (values: FormikValues): void => {
         console.log(values)
         mutate(values)
     }

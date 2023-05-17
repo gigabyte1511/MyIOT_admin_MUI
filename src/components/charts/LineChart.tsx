@@ -13,6 +13,7 @@ import {
 } from 'chart.js'
 import { Line } from 'react-chartjs-2'
 import { type ChartLine } from '../../types/ChartsData'
+import type { ChartOptions } from 'chart.js'
 
 ChartJS.register(
     CategoryScale,
@@ -31,17 +32,8 @@ interface Props {
     chartLines: ChartLine[]
 }
 export default function LineChart({ title, chartLines }: Props): JSX.Element {
-    const options = {
+    const options: ChartOptions<'line'> = {
         responsive: true,
-        plugins: {
-            legend: {
-                position: 'top' as const
-            },
-            title: {
-                display: true,
-                text: title
-            }
-        },
         scales: {
             x: {
                 type: 'time',
@@ -53,6 +45,15 @@ export default function LineChart({ title, chartLines }: Props): JSX.Element {
             y: {
                 stacked: true,
                 beginAtZero: true
+            }
+        },
+        plugins: {
+            legend: {
+                position: 'top' as const
+            },
+            title: {
+                display: true,
+                text: title
             }
         }
     }

@@ -9,6 +9,7 @@ import {
 } from 'chart.js'
 import { Bar } from 'react-chartjs-2'
 import { type ChartLine } from '../../types/ChartsData'
+import type { ChartOptions } from 'chart.js'
 
 ChartJS.register(
     CategoryScale,
@@ -24,7 +25,7 @@ interface Props {
     chartLines: ChartLine[]
 }
 export function StackedChart({ chartLines, title }: Props): JSX.Element {
-    const options = {
+    const options: ChartOptions<'bar'> = {
         plugins: {
             title: {
                 display: true,
@@ -46,8 +47,8 @@ export function StackedChart({ chartLines, title }: Props): JSX.Element {
                     display: false
                 }
             }
-        },
-        borderRadius: 5
+        }
+        // borderRadius: 5
     }
     const labels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
 

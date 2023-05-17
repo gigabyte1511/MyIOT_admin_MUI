@@ -3,6 +3,7 @@ import DeviceImage from './DeviceImage'
 import DeviceForm from '../forms/DeviceForm'
 import LineChart from '../charts/LineChart'
 import { type GetDeviceWithData } from '../../types/DeviceData'
+import { type ChartLine } from '../../types/ChartsData'
 
 const MyContainer = styled('div')({
     padding: 10,
@@ -18,7 +19,7 @@ const ChartContainer = styled('div')({
 })
 
 export default function DeviceInfo({ device }: { device: GetDeviceWithData }): JSX.Element {
-    const chartLines = [
+    const chartLines: ChartLine[] = [
         {
             label: 'Battary voltage',
             borderColor: '#2da7ff',
@@ -26,7 +27,8 @@ export default function DeviceInfo({ device }: { device: GetDeviceWithData }): J
             data: device.statuses
                 .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
                 .map((status) => ({ x: status.date, y: status.voltage })),
-            fill: true
+            fill: true,
+            hidden: false
         }
     ]
     return (

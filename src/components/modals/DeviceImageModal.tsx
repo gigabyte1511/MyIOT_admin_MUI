@@ -1,14 +1,14 @@
-import * as React from 'react'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Modal from '@mui/material/Modal'
 import { useNavigate, useOutletContext } from 'react-router-dom'
-import { ErrorMessage, Form, Formik } from 'formik'
+import { ErrorMessage, Form, Formik, type FormikValues } from 'formik'
 import { TextField, styled } from '@mui/material'
 import * as yup from 'yup'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { GET_ALLDEVICES_QUERY_KEY } from '../pages/DevicesPage'
 import { updateDeviceByID } from '../../API/api'
+import { useState } from 'react'
 
 const PATCH_DEVICE_IMAGE_QUERY_KEY = 'PATCH_DEVICE_IMAGE_QUERY_KEY'
 
@@ -40,16 +40,16 @@ const Image = styled('img')({
 
 export default function DeviceImageModal(): JSX.Element {
     const queryClient = useQueryClient()
-    const { device_image, id } = useOutletContext()
+    const { device_image, id }: { device_image: string, id: string } = useOutletContext()
     console.log(device_image)
-    const [test, setTest] = React.useState(device_image)
+    const [test, setTest] = useState<string>(device_image)
     const navigate = useNavigate()
 
     const { mutate } = useMutation({
-        queryKey: [PATCH_DEVICE_IMAGE_QUERY_KEY],
+        mutationKey: [PATCH_DEVICE_IMAGE_QUERY_KEY],
         mutationFn: updateDeviceByID,
-        onSuccess: () => {
-            queryClient.invalidateQueries(GET_ALLDEVICES_QUERY_KEY)
+        onSuccess: async () => {
+            await queryClient.invalidateQueries([GET_ALLDEVICES_QUERY_KEY])
         },
         onError: (error) => { console.log('Error', error) }
     })
@@ -58,7 +58,7 @@ export default function DeviceImageModal(): JSX.Element {
         navigate(-1)
     }
     const initialValue = { image: test }
-    const handleSubmit = (values): void => {
+    const handleSubmit = (values: FormikValues): void => {
         console.log('eee')
         mutate({ id, device_image: values.image })
         navigate(-1)
