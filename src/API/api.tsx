@@ -5,9 +5,8 @@ interface ErrorResponse {
 }
 
 const baseURL = 'http://13.37.52.101:3050'
-// const baseURL = 'http://localhost:3050'
 
-export const getAllDevices = async (): Promise<GetDevice[]> => {
+export const getAllDevices = async (): Promise<GetDevice[] | ErrorResponse> => {
     const request = await fetch(`${baseURL}/admin-api/v0.1/device`, {
         method: 'GET'
     })
@@ -18,7 +17,7 @@ export const getAllDevices = async (): Promise<GetDevice[]> => {
     return await request.json() as GetDevice[]
 }
 
-export const getAllDevicesWithData = async (): Promise<GetDeviceWithData[]> => {
+export const getAllDevicesWithData = async (): Promise<GetDeviceWithData[] | ErrorResponse> => {
     const request = await fetch(`${baseURL}/admin-api/v0.1/device/data`, {
         method: 'GET'
     })
@@ -29,7 +28,7 @@ export const getAllDevicesWithData = async (): Promise<GetDeviceWithData[]> => {
     return await request.json() as GetDeviceWithData[]
 }
 
-export const getDeviceWithDataByID = async ({ queryKey }: { queryKey: string[] }): Promise<GetDeviceWithData> => {
+export const getDeviceWithDataByID = async ({ queryKey }: { queryKey: string[] }): Promise<GetDeviceWithData | ErrorResponse> => {
     const request = await fetch(`${baseURL}/admin-api/v0.1/device/data/${queryKey[1]}`, {
         method: 'GET'
     })
@@ -40,7 +39,7 @@ export const getDeviceWithDataByID = async ({ queryKey }: { queryKey: string[] }
     return await request.json() as GetDeviceWithData
 }
 
-export const updateDeviceByID = async (data: { id: string }): Promise<GetDevice> => {
+export const updateDeviceByID = async (data: { id: string }): Promise<GetDevice | ErrorResponse> => {
     const request = await fetch(`${baseURL}/admin-api/v0.1/device/${data.id}`, {
         method: 'PATCH',
         headers: {
@@ -55,7 +54,7 @@ export const updateDeviceByID = async (data: { id: string }): Promise<GetDevice>
     return await request.json() as GetDevice
 }
 
-export const deleteDeviceByID = async ({ id }: { id: string }): Promise<GetDevice> => {
+export const deleteDeviceByID = async ({ id }: { id: string }): Promise<GetDevice | ErrorResponse> => {
     const request = await fetch(`${baseURL}/admin-api/v0.1/device/${id}`, {
         method: 'DELETE',
         headers: {
