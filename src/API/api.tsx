@@ -4,7 +4,7 @@ interface ErrorResponse {
     message: string
 }
 
-const baseURL = 'http://13.37.52.101:3050'
+const baseURL = 'https://www.amazon-ec2.gigabyte-server.ru'
 
 export const getAllDevices = async (): Promise<GetDevice[]> => {
     const request = await fetch(`${baseURL}/admin-api/v0.1/device`, {
